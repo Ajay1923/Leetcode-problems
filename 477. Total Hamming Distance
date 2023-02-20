@@ -1,0 +1,11 @@
+class Solution:
+    def totalHammingDistance(self, nums: List[int]) -> int:
+        count =0
+        for i in range(32):
+            zero = one = 0
+            tot = 1 << i
+            for num in nums :
+                if tot & num : one += 1
+                else: zero += 1    
+            count += one * zero        
+        return count
