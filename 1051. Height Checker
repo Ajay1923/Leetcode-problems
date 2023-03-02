@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int heightChecker(vector<int>& height) {
+        vector<int>temp;
+        int exp = 0;
+        temp = height;
+        sort(height.begin(),height.end());
+        for(int i=0;i<height.size();i++){
+         if (height[i] != temp[i]){
+             exp ++;
+         }
+         }
+         return  exp;
+    }
+};
