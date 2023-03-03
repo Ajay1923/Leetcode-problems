@@ -1,0 +1,44 @@
+class Solution {
+public:
+    string largestPalindromic(string num) {
+   map<int,int> mpp;
+        for(auto x : num){
+            mpp[x]++;
+        }
+        vector<char> notzero ,zero;
+        
+        for(auto x : mpp){
+            if(x.second == 1){
+                zero.push_back(x.first);
+            }else{
+                if(x.second%2 ==1){
+                    zero.push_back(x.first);
+                    mpp[x.first]--;
+                }
+                notzero.push_back(x.first);
+            }
+        }
+
+        sort(zero.begin(),zero.end(),greater<int>());
+        sort(notzero.begin(),notzero.end());
+
+        deque<char> dq;
+        if(zero.size()>0) dq.push_front(zero[0]);
+        if(notzero.size()==1 and notzero[0] == '0'){ if(dq.empty()) dq.push_front('0');}
+        else{
+            for(auto x : notzero){
+                int freq = mpp[x]/2;
+                while(freq-- > 0){
+                    dq.push_back(x);
+					dq.push_front(x);
+                }
+            }
+        }
+         string val = "";
+        while(!dq.empty()){
+            val += dq.front();
+            dq.pop_front();
+        }
+        return val;
+    }
+};
