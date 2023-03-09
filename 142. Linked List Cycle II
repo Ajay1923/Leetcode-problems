@@ -1,0 +1,21 @@
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode *end = head;
+        ListNode *start = head;
+        while(start){
+            end = end->next;
+           start = start->next;
+            if(!start)break;
+           start = start->next;
+            if(start==end)break;
+        }
+        if(start==NULL)return NULL;
+        end = head;
+        while(start!=end){
+            start = start->next;
+            end = end->next;
+        }
+        return start;
+    }
+};
